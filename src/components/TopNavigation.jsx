@@ -39,9 +39,6 @@ export const TopNavigation = () => {
           <li>
             <span>{currentUser.email} &nbsp;</span>
             <button onClick={handleLogOut}>Изход</button>
-            <button onClick={handleRefreshData} style={{ float: "right" }}>
-              Обнови
-            </button>
           </li>
         )}
       </ul>
