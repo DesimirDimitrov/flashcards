@@ -1,6 +1,7 @@
 import { TopNavigation } from "./TopNavigation";
 import { AuthContext } from "../contexts/AuthContext";
 import { useContext, useEffect, useState } from "react";
+import { Main } from "./Main";
 export const Home = () => {
   const [currentUser, setCurrentUser] = useState();
   const context = useContext(AuthContext);
@@ -16,7 +17,7 @@ export const Home = () => {
   return (
     <div>
       <TopNavigation />
-      {currentUser && <span>dashboard</span>}
+      {currentUser && <Main />}
     </div>
   );
 };
