@@ -6,6 +6,7 @@ import GlobalStore from "./contexts/GlobalStore";
 import { Category } from "./components/Category";
 import { FlashCards } from "./components/FlashCards";
 import { FlashCard } from "./components/FlashCard";
+import { FlashCardCreate } from "./components/FlashCardCreate";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="categories/:id" element={<Category />} />
           <Route path="categories/:id/cards" element={<FlashCards />} />
           <Route path="cards/:id" element={<FlashCard />} />
+          <Route path="cards/create" element={<FlashCardCreate />} />
           <Route
             path="categories/:id/cards/:flashCardId"
             element={<FlashCard />}

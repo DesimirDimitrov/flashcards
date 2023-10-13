@@ -1,10 +1,9 @@
 import { supabase } from "./../config/supabaseClient";
 import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 export const FlashCard = () => {
   const { id } = useParams();
   const [records, setRecords] = useState([]);
-  const navigate = useNavigate();
 
   useEffect(() => {
     getRecords(id);
