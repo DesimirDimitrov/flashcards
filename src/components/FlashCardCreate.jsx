@@ -2,8 +2,11 @@ import Form from "react-bootstrap/Form";
 import { useForm } from "react-hook-form";
 import { Editor } from "@tinymce/tinymce-react";
 import { useRef } from "react";
+import { useParams } from "react-router-dom";
+import { supabase } from "./../config/supabaseClient";
 
 export const FlashCardCreate = () => {
+  const { categoryId, topicId } = useParams();
   const user = JSON.parse(localStorage.getItem("user"));
   const editorRef = useRef(null);
   const {
@@ -11,9 +14,21 @@ export const FlashCardCreate = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => {
-    data.data = editorRef.current.getContent();
-    console.log(data);
+  const onSubmit = async (info) => {
+    const dbData = {
+      name: info.title,
+      data: editorRef.current.getContent(),
+      user_id: user.id,
+      category_id: info.categoryId,
+      topic_id: info.topicId,
+      type: 1,
+    };
+
+    try {
+      await supabase.from("fl_cards").insert([dbData]);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -45,13 +60,13 @@ export const FlashCardCreate = () => {
           }}
         />
       </Form.Group>
-      <Form.Group className="mb-3" controlId="category_id">
-        <Form.Select size="sm" {...register("category_id", { required: true })}>
-          <option value="1">React</option>
-          <option value="2">PHP</option>
-        </Form.Select>
-      </Form.Group>
-      <input hidden type="text" value={1} {...register("topic_id")} />
+      <input
+        hidden
+        type="text"
+        value={categoryId}
+        {...register("categoryId")}
+      />
+      <input hidden type="text" value={topicId} {...register("topicId")} />
       <input hidden type="text" value={user.id} {...register("user_id")} />
       <input type="submit" />
     </Form>

@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 export const FlashCards = () => {
-  const { id, topicId } = useParams();
+  const { categoryId, topicId } = useParams();
   const [records, setRecords] = useState([]);
   const navigate = useNavigate();
 
@@ -12,8 +12,8 @@ export const FlashCards = () => {
   };
 
   useEffect(() => {
-    getRecords(id);
-  }, [id]);
+    getRecords(categoryId);
+  }, [categoryId]);
 
   async function getRecords(id) {
     const records = await supabase
@@ -42,7 +42,7 @@ export const FlashCards = () => {
           );
         })}
       </ul>
-      <button onClick={() => handleTopicClick(id, topicId)}>
+      <button onClick={() => handleTopicClick(categoryId, topicId)}>
         Create a flashcard
       </button>
     </div>

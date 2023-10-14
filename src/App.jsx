@@ -18,7 +18,7 @@ function App() {
           <Route path="signin" element={<Signin />} />
           <Route path="categories/:id" element={<Category />} />
           <Route
-            path="categories/:id/topics/:topicId/cards"
+            path="categories/:categoryId/topics/:topicId/cards"
             element={<FlashCards />}
           />
           <Route
@@ -29,10 +29,6 @@ function App() {
           <Route
             path="categories/:categoryId/topics/:topicId/cards/create"
             element={<FlashCardCreate />}
-          />
-          <Route
-            path="categories/:id/cards/:flashCardId"
-            element={<FlashCard />}
           />
           <Route path="*" element={<h1>Not Found</h1>} />
         </Routes>
