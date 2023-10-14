@@ -3,9 +3,13 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 export const FlashCards = () => {
-  const { id } = useParams();
+  const { id, topicId } = useParams();
   const [records, setRecords] = useState([]);
   const navigate = useNavigate();
+
+  const handleTopicClick = (categoryId, topicId) => {
+    navigate(`/categories/${categoryId}/topics/${topicId}/cards/create`);
+  };
 
   useEffect(() => {
     getRecords(id);
@@ -22,7 +26,9 @@ export const FlashCards = () => {
   }
 
   const handleRecordClick = (record) => {
-    navigate(`/cards/${record.id}`);
+    navigate(
+      `/categories/${record.category_id}/topics/${record.topic_id}/cards/${record.id}`
+    );
   };
 
   return (
@@ -36,6 +42,9 @@ export const FlashCards = () => {
           );
         })}
       </ul>
+      <button onClick={() => handleTopicClick(id, topicId)}>
+        Create a flashcard
+      </button>
     </div>
   );
 };

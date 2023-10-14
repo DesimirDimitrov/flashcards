@@ -2,18 +2,18 @@ import { supabase } from "./../config/supabaseClient";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 export const FlashCard = () => {
-  const { id } = useParams();
+  const { categoryId, topicId } = useParams();
   const [records, setRecords] = useState([]);
 
   useEffect(() => {
-    getRecords(id);
-  }, [id]);
+    getRecords(categoryId);
+  }, [categoryId]);
 
-  async function getRecords(id) {
+  async function getRecords(categoryId) {
     const records = await supabase
       .from("fl_cards")
       .select("*")
-      .eq("category_id", id)
+      .eq("category_id", categoryId)
       .eq("user_id", JSON.parse(localStorage.getItem("user")).id);
 
     setRecords(records.data);
@@ -23,7 +23,11 @@ export const FlashCard = () => {
     <div>
       <h3>Data for card</h3>
       {records.map((record) => {
-        return <div key={record.id}>{record.data}</div>;
+        return (
+          <div key={record.id}>
+            {record.data} {topicId} {categoryId}
+          </div>
+        );
       })}
     </div>
   );

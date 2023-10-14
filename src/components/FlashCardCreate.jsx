@@ -4,6 +4,7 @@ import { Editor } from "@tinymce/tinymce-react";
 import { useRef } from "react";
 
 export const FlashCardCreate = () => {
+  const user = JSON.parse(localStorage.getItem("user"));
   const editorRef = useRef(null);
   const {
     register,
@@ -26,7 +27,6 @@ export const FlashCardCreate = () => {
         <Editor
           apiKey={import.meta.env.VITE_TINY_API_KEY}
           onInit={(evt, editor) => (editorRef.current = editor)}
-          initialValue="<p>This is the initial content of the editor.</p>"
           init={{
             height: 500,
             menubar: false,
@@ -45,13 +45,14 @@ export const FlashCardCreate = () => {
           }}
         />
       </Form.Group>
-      <Form.Group className="mb-3" controlId="topicId">
-        <Form.Select size="sm" {...register("category", { required: true })}>
+      <Form.Group className="mb-3" controlId="category_id">
+        <Form.Select size="sm" {...register("category_id", { required: true })}>
           <option value="1">React</option>
           <option value="2">PHP</option>
         </Form.Select>
       </Form.Group>
-      <input hidden type="text" value={1} {...register("topic")} />
+      <input hidden type="text" value={1} {...register("topic_id")} />
+      <input hidden type="text" value={user.id} {...register("user_id")} />
       <input type="submit" />
     </Form>
   );

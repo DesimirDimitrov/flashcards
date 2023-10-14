@@ -17,9 +17,19 @@ function App() {
           <Route path="signup" element={<Signup />} />
           <Route path="signin" element={<Signin />} />
           <Route path="categories/:id" element={<Category />} />
-          <Route path="categories/:id/cards" element={<FlashCards />} />
+          <Route
+            path="categories/:id/topics/:topicId/cards"
+            element={<FlashCards />}
+          />
+          <Route
+            path="categories/:categoryId/topics/:topicId/cards/:cardId"
+            element={<FlashCard />}
+          />
           <Route path="cards/:id" element={<FlashCard />} />
-          <Route path="cards/create" element={<FlashCardCreate />} />
+          <Route
+            path="categories/:categoryId/topics/:topicId/cards/create"
+            element={<FlashCardCreate />}
+          />
           <Route
             path="categories/:id/cards/:flashCardId"
             element={<FlashCard />}

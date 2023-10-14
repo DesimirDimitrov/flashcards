@@ -21,7 +21,7 @@ export const Category = () => {
   }
 
   const handleRecordClick = (record) => {
-    navigate(`/categories/${record.category_id}/cards`);
+    navigate(`/categories/${record.category_id}/topics/${record.id}/cards`);
   };
 
   return (
