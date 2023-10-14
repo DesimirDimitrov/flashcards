@@ -7,6 +7,7 @@ import { Category } from "./components/Category";
 import { FlashCards } from "./components/FlashCards";
 import { FlashCard } from "./components/FlashCard";
 import { FlashCardCreate } from "./components/FlashCardCreate";
+import { FlashCardEdit } from "./components/FlashCardEdit";
 
 function App() {
   return (
@@ -24,6 +25,10 @@ function App() {
           <Route
             path="categories/:categoryId/topics/:topicId/cards/:cardId"
             element={<FlashCard />}
+          />
+          <Route
+            path="categories/:categoryId/topics/:topicId/cards/:cardId/edit"
+            element={<FlashCardEdit />}
           />
           <Route path="cards/:id" element={<FlashCard />} />
           <Route
