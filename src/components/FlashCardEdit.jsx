@@ -24,7 +24,7 @@ export const FlashCardEdit = () => {
     setFormData(data[0]);
     setTimeout(() => {
       editorRef.current.setContent(data[0].data);
-    }, 500);
+    }, 1500);
   }
 
   const onSubmit = async (info) => {
@@ -32,8 +32,6 @@ export const FlashCardEdit = () => {
       name: info.title,
       data: editorRef.current.getContent(),
     };
-
-    //console.log(`Api request data: ${JSON.stringify(dbData)}`);
 
     try {
       await supabase.from("fl_cards").update([dbData]).eq("id", cardId);

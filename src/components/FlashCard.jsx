@@ -1,30 +1,43 @@
 import { supabase } from "./../config/supabaseClient";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 export const FlashCard = () => {
+  const navigate = useNavigate();
   const { categoryId, topicId, cardId } = useParams();
-  const [records, setRecords] = useState([]);
+  const [record, setRecord] = useState({});
 
   useEffect(() => {
     getRecords(categoryId);
   }, [categoryId]);
 
   async function getRecords(categoryId) {
-    const records = await supabase
+    const record = await supabase
       .from("fl_cards")
       .select("*")
       .eq("id", cardId)
-      .eq("user_id", JSON.parse(localStorage.getItem("user")).id);
+      .eq("user_id", JSON.parse(localStorage.getItem("user")).id)
+      .single();
 
-    setRecords(records.data);
+    setRecord(record.data);
   }
+
+  const handleCardEdit = () => {
+    navigate(
+      `/categories/${categoryId}/topics/${topicId}/cards/${cardId}/edit`
+    );
+  };
 
   return (
     <div>
-      <h3>Data for card</h3>
-      {records.map((record) => {
-        return <div key={record.id}>{record.data}</div>;
-      })}
+      <h3>
+        <span>{record.name}</span>
+        <button style={{ float: "right" }} onClick={handleCardEdit}>
+          <span>Edit</span>
+        </button>
+      </h3>
+      <div key={record.id}>
+        <p dangerouslySetInnerHTML={{ __html: record.data }}></p>
+      </div>
     </div>
   );
 };
