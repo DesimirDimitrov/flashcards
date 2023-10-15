@@ -9,6 +9,10 @@ const defaultCategories = [
     id: 2,
     name: "PHP",
   },
+  {
+    id: 3,
+    name: "ElasticSearch",
+  },
 ];
 
 export const SidebarCategories = () => {
@@ -23,8 +27,12 @@ export const SidebarCategories = () => {
       <ul>
         {defaultCategories.map((category) => {
           return (
-            <li onClick={() => handleCategoryClick(category)} key={category.id}>
-              {category.name}
+            <li
+              className="p-2"
+              onClick={() => handleCategoryClick(category)}
+              key={category.id}
+            >
+              <button style={{ minWidth: "200px" }}>{category.name}</button>
             </li>
           );
         })}

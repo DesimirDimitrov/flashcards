@@ -29,10 +29,14 @@ export const Category = () => {
       <h3>Records</h3>
       {records.map((record) => {
         return (
-          <div key={record.id}>
-            <span onClick={() => handleRecordClick(record)}>
+          <div className="container" key={record.id}>
+            <button
+              style={{ minWidth: "200px" }}
+              className="p-2"
+              onClick={() => handleRecordClick(record)}
+            >
               {record.title}
-            </span>
+            </button>
           </div>
         );
       })}

@@ -32,19 +32,26 @@ export const FlashCards = () => {
   };
 
   return (
-    <div>
+    <div className="container">
+      <button
+        style={{ float: "right" }}
+        onClick={() => handleTopicClick(categoryId, topicId)}
+      >
+        Create a flashcard
+      </button>
       <ul>
         {records.map((record) => {
           return (
-            <li onClick={() => handleRecordClick(record)} key={record.id}>
-              {record.name}
+            <li
+              className="p-2"
+              onClick={() => handleRecordClick(record)}
+              key={record.id}
+            >
+              <button>{record.name}</button>
             </li>
           );
         })}
       </ul>
-      <button onClick={() => handleTopicClick(categoryId, topicId)}>
-        Create a flashcard
-      </button>
     </div>
   );
 };

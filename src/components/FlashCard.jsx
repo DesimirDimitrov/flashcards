@@ -6,10 +6,6 @@ export const FlashCard = () => {
   const { categoryId, topicId, cardId } = useParams();
   const [record, setRecord] = useState({});
 
-  useEffect(() => {
-    getRecords(categoryId);
-  }, [categoryId]);
-
   async function getRecords(categoryId) {
     const record = await supabase
       .from("fl_cards")
@@ -21,6 +17,10 @@ export const FlashCard = () => {
     setRecord(record.data);
   }
 
+  useEffect(() => {
+    getRecords(categoryId);
+  }, [categoryId]);
+
   const handleCardEdit = () => {
     navigate(
       `/categories/${categoryId}/topics/${topicId}/cards/${cardId}/edit`
@@ -28,9 +28,9 @@ export const FlashCard = () => {
   };
 
   return (
-    <div>
+    <div className="container">
       <h3>
-        <span>{record.name}</span>
+        <h6>{record.name}</h6>
         <button style={{ float: "right" }} onClick={handleCardEdit}>
           <span>Edit</span>
         </button>
