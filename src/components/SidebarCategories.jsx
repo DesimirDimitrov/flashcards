@@ -17,6 +17,10 @@ const defaultCategories = [
     id: 4,
     name: "TypeScript",
   },
+  {
+    id: 5,
+    name: "JavaScript",
+  },
 ];
 
 export const SidebarCategories = () => {
