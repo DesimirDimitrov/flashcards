@@ -13,6 +13,10 @@ const defaultCategories = [
     id: 3,
     name: "ElasticSearch",
   },
+  {
+    id: 4,
+    name: "TypeScript",
+  },
 ];
 
 export const SidebarCategories = () => {
